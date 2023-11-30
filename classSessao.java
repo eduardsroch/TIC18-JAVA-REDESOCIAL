@@ -25,26 +25,40 @@ class Sistema {
         this.sessoes = new ArrayList<>();
     }
 
-    public void autenticar(String nome, String senha) throws Exception {
+    public Sessao autenticar(String nome, String senha) throws Exception {
         for (Usuario usuario : usuarios) {
             if (usuario.getNome().equals(nome) && usuario.getSenha().equals(senha)) {
-                Sessao sessao = new Sessao(usuario);
+                Sessao sessao = Usuario.logar(usuario);
                 sessoes.add(sessao);
+                return sessao;
             }
         }
         throw new Exception("Usuário ou senha inválidos");
     }
 
-    public void criarAmizade(Sessao sessao, String nomeDoAmigo) {
-        sessao.getUsuario().criarAmizade(nomeDoAmigo);
+    public void criarAmizade(Usuario amigo) {
+        if (!amigos.contains(amigo)) {
+            amigos.add(amigo);
+            amigo.add(this);
+            System.out.println(this.nome + " e " + amigo.getNome() + " são agora amigos.");
+        } else {
+            System.out.println(this.nome + " e " + amigo.getNome() + " já são amigos.");
+        }
     }
 
-    public void desfazerAmizade(Sessao sessao, String nomeDoExAmigo) {
-        sessao.getUsuario().desfazerAmizade(nomeDoExAmigo);
+    public void desfazerAmizade(Usuario exAmigo) {
+        if (amigos.contains(exAmigo)) {
+            amigos.remove(exAmigo);
+            exAmigo.remove(this);
+            System.out.println(this.nome + " e " + exAmigo.getNome() + " não são mais amigos.");
+        } else {
+            System.out.println(this.nome + " e " + exAmigo.getNome() + " não eram amigos.");
+        }
     }
 
-    public void incluirPostagem(Sessao sessao, String postagem) {
-        sessao.getUsuario().incluirPostagem(postagem);
+    public void incluirPostagem(String postagem) {
+        listaPostagens.add(postagem);
+        System.out.println("Postagem adicionada por " + this.nome + ": " + postagem);
     }
 
     public ArrayList<String> listarPostagens(Sessao sessao) {
