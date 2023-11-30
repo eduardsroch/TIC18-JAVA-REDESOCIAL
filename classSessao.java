@@ -126,18 +126,18 @@ class Usuario {
 class Sistema {
     public static void main(String[] args) {
         ArrayList<Usuario> usuarios = new ArrayList<>();
-        Usuario user1 = new Usuario("Alice", "alice@email.com", "senha123");
-        Usuario user2 = new Usuario("Bob", "bob@email.com", "senha456");
+        Usuario user1 = new Usuario("", "", "");
+        Usuario user2 = new Usuario("", "", "");
         usuarios.add(user1);
         usuarios.add(user2);
 
         try {
-            Sessao sessao = Sessao.autenticar(usuarios, "Alice", "senha123");
-            sessao.criarAmizade("Bob", usuarios);
-            sessao.incluirPostagem("Olá, mundo!");
-            sessao.desfazerAmizade("Bob", usuarios);
+            Sessao sessao = Sessao.autenticar(usuarios, "", "");
+            sessao.criarAmizade("", usuarios);
+            sessao.incluirPostagem("");
+            sessao.desfazerAmizade("", usuarios);
         } catch (Exception e) {
-            System.out.println("Erro ao autenticar: " + e.getMessage());
+            System.out.println("" + e.getMessage());
         }
     }
 }
