@@ -90,7 +90,7 @@ class Usuario {
     }
 
     public void adicionarSessao(Sessao sessao) {
-        // Poderia ser utilizada para controlar sessões ativas do usuário
+  
     }
 
     public void criarAmizade(Usuario amigo) {
@@ -125,7 +125,6 @@ class Usuario {
 
 class Sistema {
     public static void main(String[] args) {
-        // Exemplo de uso do sistema
         ArrayList<Usuario> usuarios = new ArrayList<>();
         Usuario user1 = new Usuario("Alice", "alice@email.com", "senha123");
         Usuario user2 = new Usuario("Bob", "bob@email.com", "senha456");
